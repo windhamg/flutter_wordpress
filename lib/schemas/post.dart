@@ -100,6 +100,9 @@ class Post {
   /// The featured Media of the post.
   Media featuredMedia;
 
+  /// GDW -- 05/02/2020 -- get featured image url
+  String featuredImageUrl;
+
   Post({
     this.date,
     this.dateGmt,
@@ -150,6 +153,9 @@ class Post {
         json['excerpt'] != null ? new Excerpt.fromJson(json['excerpt']) : null;
     authorID = json['author'];
     featuredMediaID = json['featured_media'];
+    /// GDW -- 05/02/2020 -- get featured image url
+    featuredImageUrl = json['featuredimage_url'];
+    
     if (json['comment_status'] != null) {
       PostCommentStatus.values.forEach((val) {
         if (enumStringToName(val.toString()) == json['comment_status']) {
