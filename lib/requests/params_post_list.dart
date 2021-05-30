@@ -15,7 +15,7 @@ class ParamsPostList {
   final List<int> excludeAuthorIDs;
   final List<int> includePostIDs;
   final List<int> excludePostIDs;
-  final int offset;
+  final int? offset;
   final Order order;
   final PostOrderBy orderBy;
   final String slug;
@@ -24,7 +24,7 @@ class ParamsPostList {
   final List<int> excludeCategories;
   final List<int> includeTags;
   final List<int> excludeTags;
-  final bool sticky;
+  final bool? sticky;
 
   ParamsPostList({
     this.context = WordPressContext.view,
@@ -33,19 +33,19 @@ class ParamsPostList {
     this.searchQuery = '',
     this.afterDate = '',
     this.beforeDate = '',
-    this.includeAuthorIDs,
-    this.excludeAuthorIDs,
-    this.includePostIDs,
-    this.excludePostIDs,
+    this.includeAuthorIDs = const [],
+    this.excludeAuthorIDs = const [],
+    this.includePostIDs = const [],
+    this.excludePostIDs = const [],
     this.offset,
     this.order = Order.desc,
     this.orderBy = PostOrderBy.date,
     this.slug = '',
     this.postStatus = PostPageStatus.publish,
-    this.includeCategories,
-    this.excludeCategories,
-    this.includeTags,
-    this.excludeTags,
+    this.includeCategories = const [],
+    this.excludeCategories = const [],
+    this.includeTags = const [],
+    this.excludeTags = const [],
     this.sticky,
   });
 
@@ -73,6 +73,34 @@ class ParamsPostList {
       'sticky': '${this.sticky == null ? '' : this.sticky}',
     };
   }
+
+ParamsPostList copyWith({
+  int? pageNum,
+  int? perPage,
+}) {
+  return ParamsPostList(
+    afterDate: afterDate,
+    beforeDate: beforeDate,
+    context: context,
+    excludeAuthorIDs: excludeAuthorIDs,
+    excludeCategories: excludeCategories,
+    excludePostIDs: excludePostIDs,
+    excludeTags: excludeTags,
+    includeAuthorIDs: includeAuthorIDs,
+    includeCategories: includeCategories,
+    includePostIDs: includePostIDs,
+    includeTags: includeTags,
+    offset: offset,
+    order: order,
+    orderBy: orderBy,
+    pageNum: pageNum ?? this.pageNum,
+    perPage: perPage ?? this.perPage,
+    postStatus: postStatus,
+    searchQuery: searchQuery,
+    slug: slug,
+    sticky: sticky
+  );
+}
 
   @override
   String toString() {
