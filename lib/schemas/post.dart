@@ -100,7 +100,7 @@ class Post {
   Media? featuredMedia;
 
   /// GDW -- 05/02/2020 -- get featured image url
-  String featuredImageUrl;
+  String? featuredImageUrl;
 
   Post({
     this.date,
